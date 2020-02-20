@@ -11,5 +11,9 @@ def hello():
 def main():
     return render_template('index.html')
 
+@app.route('/calc', methods=['POST', 'GET'])
+def calc():
+
+
 if __name__ == "__main__":
     app.run(debug=True)
