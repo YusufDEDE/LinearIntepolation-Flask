@@ -23,10 +23,12 @@ def calc():
         x1 = request.form.get('x1')
 
         # start(y0, x, x0, x1, y1):
-        print(start(int(y0), int(x), int(x0), int(x1), int(y1) ))
-        return render_template('index.html', result=start(int(y0), int(x), int(x0), int(x1), int(y1)))
-    else:
-        return render_template('index.html', result="değerleri gir!")
+        if x != '' and x0 != '' and y0 != '' and y1 != '' and x1 != '': 
+            print(start(int(y0), int(x), int(x0), int(x1), int(y1) ))
+            return render_template('index.html', result=start(int(y0), int(x), int(x0), int(x1), int(y1)))
+        else:
+            return render_template('index.html', result="Please fill out this fields!")
+    
     
     
 

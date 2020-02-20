@@ -8,23 +8,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-        <script>
-        // just for the demos, avoids form submit
-        jQuery.validator.setDefaults({
-        debug: true,
-        success: "valid"
-        });
-        $( "#myform" ).validate({
-        rules: {
-            field: {
-            required: true
-            }
-        }
-        });
-        </script>
     </head>
     <body>
         <div class="jumbotron text-center">
@@ -81,7 +64,9 @@
                   {% endif %}
               </div>
             </div>
+            <br><br><br><br><br>
           </div>
+          
           <div class="footer">
             <a class="btn btn-default" href="https://github.com/YusufDEDE/LinearInterpolation-Flask"><h5 id="footer"><i class="fa fa-github"></i> YusufDEDE/LinearInterpolation-Flask</h5></a>
           </div>
