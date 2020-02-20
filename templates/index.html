@@ -5,10 +5,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+        <script>
+        // just for the demos, avoids form submit
+        jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+        });
+        $( "#myform" ).validate({
+        rules: {
+            field: {
+            required: true
+            }
+        }
+        });
+        </script>
     </head>
     <body>
         <div class="jumbotron text-center">
@@ -22,29 +38,30 @@
                 <img  style="width: 100%;" src="{{ url_for('static', filename='img/desc.jpeg') }}" alt="Linear Interpolation Simple">
               </div>
               <div class="col-sm-6">
-                <form>
+                <form action="/calc", method="POST" id="myform">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Wage ( Y<sub>0</sub> )</label>
-                      <input type="number" class="form-control" id="y0" aria-describedby="emailHelp" placeholder="Enter wage">
+                      <input type="number" class="form-control" name="y0" aria-describedby="emailHelp" placeholder="Enter wage">
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="x">Experience (Year) ( X )</label>
-                            <input type="number" class="form-control" placeholder="Enter Experience">
+                            <input name="x" type="number" class="form-control" placeholder="Enter Experience">
                         </div>
                         <div class="col">
                             <label for="x0">Experience (Year) ( X<sub>0</sub> )</label>
-                            <input type="number" class="form-control" placeholder="Enter Experience Next">
+                            <input name="x0" type="number" class="form-control" placeholder="Enter Experience">
                         </div>
                     </div>
                     <div class="form-row">
+
                         <div class="col">
-                            <label for="x">Wage ( Y<sub>1</sub> )</label>
-                            <input type="number" class="form-control" placeholder="Enter Wage Back">
+                            <label for="y">Wage ( Y<sub>1</sub> )</label>
+                            <input name="y1" type="number" class="form-control" placeholder="Enter Wage Back">
                         </div>
                         <div class="col">
-                            <label for="x0">Wage  ( Y<sub>0</sub> )</label>
-                            <input type="number" class="form-control" placeholder="Enter Wage Next">
+                            <label for="x1">Experience  ( X<sub>1</sub> )</label>
+                            <input name="x1" type="number" class="form-control" placeholder="Enter Experience Next">
                         </div>
                     </div>
                     <br>
@@ -52,6 +69,16 @@
                         <button type="submit" id="calc" class="btn btn-success btn-block">Calc!</button>
                     </div>
                   </form>
+                  {% if result %}
+                  <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Well done!</h4>
+                    <p>Nearly always it is the recondite and complicated which is elaborated first; and it is only when some relatively unsophisticated mind attacks a problem that its deep simplicity is revealed.</p>
+                    <small>Eric Temple Bell, The Development of Mathematics (1940).</small>
+                    <hr>
+                    <p class="mb-0">Result _> {{ result }}</p>
+                    <a class="btn btn-primary float-right" href="/">Try Again!</a>
+                  </div>
+                  {% endif %}
               </div>
             </div>
           </div>
